@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kidocode</title>
+    <link href="https://cdn.prod.website-files.com/61d6943d6b5924685ac825ca/6278d8aed647560c915f4cef_symbol-new.png"
+        rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" href="static/home.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Iceland&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Update time every second
+            function updateTime() {
+                var now = new Date();
+                var hours = now.getHours();
+                var minutes = now.getMinutes();
+                var seconds = now.getSeconds();
+                var ampm = hours >= 12 ? 'PM' : 'AM';
+                hours = hours % 12 || 12;
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+                seconds = seconds < 10 ? '0' + seconds : seconds;
+                document.getElementById("current-time").innerText = `${hours}:${minutes}:${seconds} ${ampm}`;
+            }
+            setInterval(updateTime, 1000);
+
+            // Logout button functionality
+            document.getElementById("logout-button").addEventListener("click", function () {
+                window.location.href = "/logout";
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Profile Picture -->
+        <div class="profile">
+            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                alt="User Profile">
+        </div>
+
+        <!-- Navigation Menu -->
+        <div class="menu">
+            <div class="menu-item active" onclick="showPanel('home', this)">Home</div>
+            <div class="menu-item" onclick="showPanel('kroom', this)">KRoom</div>
+            <div class="menu-item" onclick="showPanel('sroom', this)">SRoom</div>
+            <div class="menu-item" onclick="showPanel('chat', this)">Chat</div>
+        </div>
+
+        <!-- Settings Button -->
+        <div class="settings" onclick="showPanel('settings', this)">
+            <i class="fa fa-cog"></i>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Home Panel -->
+        <div id="home" class="panel active-panel">
+            <div class="welcome-content">
+                <div class="section">
+                    <img src="https://i0.wp.com/www.printmag.com/wp-content/uploads/2021/02/4cbe8d_f1ed2800a49649848102c68fc5a66e53mv2.gif?fit=476%2C280&ssl=1"
+                        alt="">
+                    <p>Student Online: XX</p>
+                    <p>Trainer Online: XX</p>
+                </div>
+                <div class="section">
+                    <h2><span id="current-time">{{ current_time }}</span></h2>
+                    <p>{{ current_date }}</p>
+                    <p>Greetings, {{ username }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- KRoom Panel -->
+        <div id="kroom" class="panel">
+            <div class="center-content">
+                <h1>Join KRoom</h1>
+                <button class="join-button">Join KRoom</button>
+            </div>
+        </div>
+
+        <!-- SRoom Panel -->
+        <div id="sroom" class="panel">
+            <h1>Breakout Rooms</h1>
+            <div class="rooms-grid">
+                <button class="join-button">Room1</button>
+                <button class="join-button">Room2</button>
+                <button class="join-button">Room3</button>
+                <button class="join-button">Room4</button>
+                <button class="join-button">Extra1</button>
+                <button class="join-button">Extra2</button>
+                <button class="join-button">Extra3</button>
+                <button class="join-button">Extra4</button>
+                <button class="join-button">Interview1</button>
+                <button class="join-button">Interview2</button>
+                <button class="join-button">Meeting</button>
+                <button class="join-button">Trainer Lounge</button>
+            </div>
+        </div>
+
+        <!-- Chat Panel -->
+        <div id="chat" class="panel">
+            <div class="chat-container">
+                <!-- User List -->
+                <div class="user-list">
+                    <h3>Users</h3>
+                    <ul>
+                        <li onclick="openChat('User 1')">User 1</li>
+                        <li onclick="openChat('User 2')">User 2</li>
+                        <li onclick="openChat('User 3')">User 3</li>
+                    </ul>
+                </div>
+
+                <!-- Chat Window -->
+                <div class="chat-window">
+                    <div id="chat-header">
+                        <span id="chat-user"></span>
+                        <button class="fa fa-phone" onclick="startVoiceCall()"></button>
+                    </div>
+                    <div id="chat-messages" class="chat-messages"></div>
+                    <div id="chat-input">
+                        <input type="text" placeholder="Type a message..." id="messageInput">
+                        <button id="sendBtn" onclick="sendMessage()">Send</button>
+                        <button class="fa fa-upload" onclick="uploadFile()"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Settings Panel -->
+        <div id="settings" class="panel">
+            <div class="settings-content">
+                <h1>Settings</h1>
+
+                <!-- Content Layout -->
+                <div class="settings-layout">
+                    <!-- Device Settings (Left Side) -->
+                    <div class="settings-section">
+                        <h2>Devices</h2>
+                        <label for="mic-select">Microphone:</label>
+                        <select id="mic-select"></select>
+
+                        <label for="headphone-select">Headphone:</label>
+                        <select id="headphone-select"></select>
+
+                        <label for="camera-select">Camera:</label>
+                        <select id="camera-select"></select>
+                    </div>
+
+                    <!-- Learning Courses (Right Side) -->
+                    <div class="settings-section">
+                        <h2>Learning Courses</h2>
+                        <div>
+                            <label><input type="checkbox" id="course-web-dev"> Web Development</label>
+                            <label><input type="checkbox" id="course-game-dev"> Game Development</label>
+                            <label><input type="checkbox" id="course-mobile-app"> Mobile App Development</label>
+                            <label><input type="checkbox" id="course-electronic"> Electronic</label>
+                            <label><input type="checkbox" id="course-python"> Python</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Buttons (Bottom) -->
+                <div class="settings-buttons">
+                    <button id="confirm-button">Save</button>
+                    <button id="logout-button" class="logout">Log Out</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- Meeting Room Panel -->
+        <div id="meeting-room" class="panel">
+            <div id="meeting-header">
+                <h1 id="room-name">Meeting Room</h1>
+                <p id="participant-count">Participants: 0</p>
+            </div>
+            <div id="meeting-content">
+                <!-- Space for shared screen -->
+                <div id="shared-screen">
+                    <video id="screenVideo" autoplay muted style="width: 100%; height: 100%;"></video>
+                </div>
+
+                <!-- Meeting chat -->
+                <div id="meeting-chatbox">
+                    <div id="meeting-chat-messages"></div>
+                    <div id="meeting-chat-input">
+                        <input type="text" id="meetingMessageInput" placeholder="Type a message...">
+                        <button onclick="sendMeetingMessage()">Send</button>
+                        <button class="fa fa-upload" onclick="uploadMeetingFile()"></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navbar with controls -->
+            <div id="meeting-navbar">
+                <button id="mic-btn" onclick="toggleMicrophone()">Mic</button>
+                <button id="camera-btn" onclick="toggleCamera()">Camera</button>
+                <button id="screen-btn" onclick="shareScreen()">Share Screen</button>
+                <button id="exit-meeting-btn" onclick="exitMeeting()">Exit</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="static/home.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,456 @@
+/* General Styling */
+body {
+    margin: 0;
+    display: flex;
+    font-family: 'Iceland', cursive;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.sidebar {
+    width: 80px;
+    background-color: #7a1b5b;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+    height: 100vh;
+    text-align: center;
+    transition: width 0.3s ease; /* Added smooth transition */
+}
+
+.sidebar:hover {
+    width: 200px; /* Sidebar expands on hover */
+}
+
+.profile img {
+    width: 60px;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.menu {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.menu-item {
+    padding: 15px 0;
+    cursor: pointer;
+    border-bottom: 1px solid #5b1345;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Added transition for animation */
+}
+
+.menu-item:hover {
+    background-color: #5b1345;
+    transform: scale(1.1); /* Slightly enlarges on hover */
+}
+
+.menu-item.active {
+    background-color: #5b1345;
+}
+
+.settings {
+    padding: 15px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Added transition for animation */
+}
+
+.settings:hover {
+    background-color: #5b1345;
+}
+
+
+/* Panels */
+.main-content {
+    flex: 1;
+    background-color: #ffc1e3;
+    padding: 20px;
+    display: flex;
+}
+
+.panel {
+    display: none;
+    width: 100%;
+}
+
+.active-panel {
+    display: block;
+}
+
+.chat-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;  
+    height: 100%;        
+    width: 100%;           
+}
+
+.user-list {
+    width: 200px;
+    background-color: #7a1b5b;
+    color: white;
+    padding: 10px;
+    overflow-y: auto;
+    height: 480px;
+	border: 1px solid #7a1b5b;
+}
+
+.user-list li {
+    list-style: none;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.user-list li:hover {
+    background-color: #ffe4e6;
+    color: black;
+}
+
+.user-list li.active-user {
+    background-color: #ffe4e6;
+    color: black;
+    font-weight: bold;
+}
+
+.chat-window {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    background-color: white;
+    height: 500px;  
+    width: 800px;    
+    max-width: 90%;
+	border: 1px solid #7a1b5b;
+}
+
+#chat-header {
+    background-color: #ffe4e6;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#chat-header button {
+    background-color: #7a1b5b;
+    color: white;
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Added button animation */
+}
+
+#chat-header button:hover {
+    background-color: #5b1345;
+    transform: scale(1.1); /* Button enlarges on hover */
+}
+
+#chat-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background: linear-gradient(to bottom, #ffe4e6, #f8b9c7);
+}
+
+#chat-input {
+    display: flex;
+    border-top: 1px solid #7a1b5b;
+}
+
+#chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+	background-color: #ffe4e6;
+}
+
+#chat-input button {
+    background-color: #7a1b5b;
+    color: white;
+    border: none;
+    padding: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Added button animation */
+}
+
+#chat-input button:hover {
+    background-color: #5b1345;
+    transform: scale(1.1); /* Button enlarges on hover */
+}
+
+.fa {
+    cursor: pointer;
+}
+
+/* KRoom, SRoom */
+.join-button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background: #8E2A6D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Added animation */
+}
+
+.join-button:hover {
+    background: #6D1F54;
+    transform: scale(1.1); /* Enlarges on hover */
+}
+
+/* SRoom */
+.rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+/* SRoom Button Styling */
+.rooms-grid .join-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    font-size: 16px;
+    background: #8E2A6D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.rooms-grid .join-button:hover {
+    background: #6D1F54;
+    transform: scale(1.05);
+}
+
+/* Home Panel */
+.welcome-content {
+    display: flex;
+	justify-content: space-around;
+	align-items: center;
+    height: 100%;
+}
+
+.section {
+    flex: 1;
+    text-align: center;
+    max-width: 300px;
+	max-height: 500px;
+    padding: 20px;
+    margin: 20px;
+	background: linear-gradient(to bottom, #ffe4e6, #f8b9c7);
+    font-size: 40px;
+	border: 3px solid #7a1b5b;
+    border-radius: 20px;
+}
+
+.section img {
+    max-width: 230px;
+    margin-bottom: 10px;
+}
+
+/* Settings Content Layout */
+.settings-layout {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.settings-section {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.settings-section h2 {
+    margin-bottom: 10px;
+    color: #8E2A6D;
+}
+
+.settings-section label {
+    display: block;
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.settings-section select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Buttons at Bottom */
+.settings-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+#confirm-button {
+    background: #8E2A6D;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#confirm-button:hover {
+    background: #6D1F54;
+}
+
+.logout {
+    background: #FF6F61;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.logout:hover {
+    background: #E55A4E;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Meeting Room */
+#meeting-room {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    height: 100%;
+    background: #ffc1e3;
+}
+
+.active-panel#meeting-room {
+    display: flex; /* Show when active */
+}
+
+#meeting-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #7a1b5b;
+    color: white;
+    padding: 10px;
+}
+
+#meeting-content {
+    display: flex;
+    flex: 1;
+    padding: 10px;
+    gap: 10px;
+}
+
+#shared-screen {
+    flex: 2;
+    background: #fff;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Meeting Room Chatbox */
+#meeting-chatbox {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: white;
+    border: 1px solid #7a1b5b;
+}
+
+#meeting-chat-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background: linear-gradient(to bottom, #ffe4e6, #f8b9c7);
+	max-height:420px;
+}
+
+#meeting-chat-input {
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+    background-color: #ffe4e6;
+    border-top: 1px solid #7a1b5b;
+}
+
+#meeting-chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #7a1b5b;
+    border-radius: 5px;
+}
+
+#meeting-chat-input button {
+    background-color: #7a1b5b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#meeting-chat-input button:hover {
+    background-color: #5b1345;
+    transform: scale(1.1);
+}
+
+/* Buttons at Bottom */
+#meeting-navbar {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: #7a1b5b;
+    color: white;
+}
+
+#meeting-navbar button {
+    background: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#meeting-navbar button:hover {
+    background: #e3e3e3;
+    transform: scale(1.1);
+}
+
+#meeting-navbar button.active {
+    background: #FF6F61; /* Distinct active state color */
+    color: white;
+}
+

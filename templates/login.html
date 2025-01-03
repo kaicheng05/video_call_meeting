@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='login.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='login.js') }}"></script>
+    <title>Login</title>
+    <link href="https://cdn.prod.website-files.com/61d6943d6b5924685ac825ca/6278d8aed647560c915f4cef_symbol-new.png"
+        rel="shortcut icon" type="image/x-icon">
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <h2>Login</h2>
+            <!-- Form updated to submit to Flask /login route -->
+            <form id="loginForm" method="POST" action="/login">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <div class="forgot-password">
+                    <a href="#" id="forgotPasswordLink">Forgot Password?</a>
+                </div>
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+                <div class="gmail-login">
+                    <button type="button" id="gmailButton">
+                        <span>&#9993;</span> <a href="https://myaccount.google.com/">Gmail</a>
+                    </button>
+                </div>
+                <div class="button-group">
+                    <button type="submit" id="loginButton">Login</button>
+                    <button type="reset" id="cancelButton">Cancel</button>
+                </div>
+            </form>
+
+            <div id="forgotPasswordForm" class="forgot-password-form">
+                <h2>Forgot Password</h2>
+                <form action="/forgot_password" method="POST">
+                    <label for="username_or_email">Enter your username:</label>
+                    <input type="text" id="username_or_email" name="username_or_email" placeholder="Enter your username" required>
+                    <button type="submit">Submit</button>
+                </form>
+                <button id="backToLogin">Back to Login</button>
+            </div>
+            
+            {% if login_success %}
+                <script>
+                    alert("Login successful! Welcome, {{ username }}!");
+                    window.location.href = "/home";
+                </script>
+            {% endif %}
+            
+            {% if login_error %}
+                <script>
+                    alert("Invalid username or password. Please try again.");
+                </script>
+            {% endif %}
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='login.js') }}"></script>
+</body>
+
+</html>
